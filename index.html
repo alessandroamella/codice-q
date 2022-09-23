@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Radio</title>
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link rel="stylesheet" href="/css/index.css" />
+    </head>
+    <body>
+        <div class="container pt-3">
+            <div
+                class="is-flex is-justify-content-center is-flex-direction-column"
+            >
+                <h1
+                    class="bold has-text-centered has-text-weight-bold is-size-1 mb-1"
+                >
+                    Codice Q e abbreviazioni
+                </h1>
+                <div class="control has-text-centered mb-3">
+                    <label class="radio">
+                        <input type="radio" name="type" value="abbr" />
+                        Abbreviazioni
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="type" value="q" />
+                        Codice Q
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="type" value="both" />
+                        Entrambi
+                    </label>
+                </div>
+
+                <h2
+                    id="question"
+                    class="bold has-text-centered has-text-weight-bold is-size-3 mb-1"
+                >
+                    Caricamento...
+                </h2>
+
+                <div class="columns is-mobile m-auto" style="width: 100%">
+                    <div
+                        class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop m-auto"
+                    >
+                        <div class="select is-multiple">
+                            <select
+                                multiple
+                                size="3"
+                                id="answers"
+                                class="w-12 m-auto"
+                            >
+                                <option value="dummy1">Caricamento...</option>
+                                <option value="dummy2">Caricamento...</option>
+                                <option value="dummy3">Caricamento...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="is-flex is-justify-content-center">
+                <button class="button is-info" id="check">Controlla</button>
+            </div>
+        </div>
+
+        <script src="/js/index.js"></script>
+    </body>
+</html>

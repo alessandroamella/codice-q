@@ -1,0 +1,11 @@
+.select, #answers {
+    width: 100%;
+}
+
+#answers {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    overflow-y: hidden;
+    overflow-x: auto;
+    text-align: center;
+}

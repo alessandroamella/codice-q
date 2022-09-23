@@ -171,7 +171,7 @@ function check() {
 }
 
 function start() {
-    const type = getCookie("type") || "both";
+    const type = getCookie("type") || "q";
     document.querySelector(`input[value="${type}"]`).checked = true;
     ask(getSelectedQuestionType());
 }

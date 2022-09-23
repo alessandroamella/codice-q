@@ -125,62 +125,76 @@
     </head>
     <body>
         <div class="container pt-3" style="width: 100%">
-            <div
-                class="is-flex is-justify-content-center is-flex-direction-column"
-            >
-                <h1
-                    class="bold has-text-centered has-text-weight-bold is-size-1 mb-1"
+            <form id="main-form">
+                <div
+                    class="is-flex is-justify-content-center is-flex-direction-column"
                 >
-                    Codice Q e abbreviazioni
-                </h1>
-                <div class="control has-text-centered mb-3">
-                    <label class="radio">
-                        <input type="radio" name="type" value="abbr" />
-                        Abbreviazioni
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="type" value="q" />
-                        Codice Q
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="type" value="both" />
-                        Entrambi
-                    </label>
-                </div>
-
-                <h2
-                    id="question"
-                    class="bold has-text-centered has-text-weight-bold is-size-3 mb-1"
-                >
-                    Caricamento...
-                </h2>
-
-                <div class="columns is-mobile m-auto" style="width: 100%">
-                    <div
-                        class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop is-two-thirds-widescreen is-two-thirds-fullhd m-auto"
+                    <h1
+                        class="bold has-text-centered has-text-weight-bold is-size-1 mb-1"
                     >
-                        <div class="select is-multiple">
-                            <select
-                                multiple
-                                size="3"
-                                id="answers"
-                                class="w-12 m-auto"
-                            >
-                                <option value="dummy1">Caricamento...</option>
-                                <option value="dummy2">Caricamento...</option>
-                                <option value="dummy3">Caricamento...</option>
-                            </select>
+                        Codice Q e abbreviazioni
+                    </h1>
+                    <div class="control has-text-centered mb-3">
+                        <label class="radio">
+                            <input type="radio" name="type" value="abbr" />
+                            Abbreviazioni
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="type" value="q" />
+                            Codice Q
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="type" value="both" />
+                            Entrambi
+                        </label>
+                    </div>
+
+                    <h2
+                        id="question"
+                        class="bold has-text-centered has-text-weight-bold is-size-3 mb-1"
+                    >
+                        Caricamento...
+                    </h2>
+
+                    <div class="columns is-mobile m-auto" style="width: 100%">
+                        <div
+                            class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop is-two-thirds-widescreen is-two-thirds-fullhd m-auto"
+                        >
+                            <div class="select is-multiple">
+                                <select
+                                    multiple
+                                    size="3"
+                                    aria-multiline="true"
+                                    aria-multiselectable="false"
+                                    required
+                                    id="answers"
+                                    class="w-12 m-auto"
+                                >
+                                    <option value="dummy1">
+                                        Caricamento...
+                                    </option>
+                                    <option value="dummy2">
+                                        Caricamento...
+                                    </option>
+                                    <option value="dummy3">
+                                        Caricamento...
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="is-flex is-justify-content-center mt-2 mb-5">
-                <button class="button is-info" id="check">Controlla</button>
-            </div>
+                <div class="is-flex is-justify-content-center mt-2 mb-5">
+                    <button class="button is-info" id="check" type="submit">
+                        Controlla
+                    </button>
+                </div>
+            </form>
         </div>
 
         <footer class="footer" style="flex-grow: 1">
             <div class="content has-text-centered">
+                <!-- prettier-ignore -->
                 <p>
                     <strong>Codice Q e abbreviazioni</strong>
                     di
@@ -188,18 +202,12 @@
                         href="https://www.bitrey.it"
                         target="_blank"
                         rel="noopener noreferrer"
-                    >
-                        Alessandro Amella
-                    </a>
-                    . Il codice è pubblico su
+                    >Alessandro Amella</a>. Il codice è pubblico su
                     <a
                         href="https://github.com/Bitrey/codice-q"
                         target="_blank"
                         rel="noopener noreferrer"
-                    >
-                        GitHub
-                    </a>
-                    . L'esame il 19 ottobre 🙏
+                    >GitHub</a>. L'esame il 19 ottobre 🙏
                 </p>
             </div>
         </footer>

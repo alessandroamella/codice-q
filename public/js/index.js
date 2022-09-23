@@ -153,5 +153,10 @@ function start() {
     ask(getSelectedQuestionType());
 }
 
-document.getElementById("check").addEventListener("click", check);
+document.getElementById("main-form").addEventListener("submit", e => {
+    e.preventDefault();
+    check();
+    return false;
+});
+
 start();

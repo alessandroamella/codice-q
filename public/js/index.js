@@ -11,7 +11,7 @@ const ABBREVIATIONS = {
     R: "Ricevuto",
     RX: "Ricevitore",
     SIG: "Segnale",
-    TX: "Trasmettirore",
+    TX: "Trasmettitore",
     UR: "Vostro",
     VA: "Fine dell'interruzione"
 };
@@ -92,13 +92,24 @@ function ask(obj) {
     answersElem.innerHTML = "";
 
     for (const s of shuffled) {
-        const option = document.createElement("option");
-        option.value = s[0];
-        option.textContent = s[1];
-        answersElem.appendChild(option);
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "answer";
+        input.value = s[0];
+        const span = document.createElement("span");
+        span.textContent = s[1];
+        label.appendChild(input);
+        label.appendChild(span);
+        answersElem.appendChild(label);
+
+        // const option = document.createElement("option");
+        // option.value = s[0];
+        // option.textContent = s[1];
+        // answersElem.appendChild(option);
     }
 
-    answersElem.childNodes[0].setAttribute("selected", true);
+    answersElem.childNodes[0].childNodes[0].setAttribute("checked", true);
 
     state.question = q[0];
     state.answer = q[1];
@@ -106,11 +117,9 @@ function ask(obj) {
 
 const checkBtn = document.getElementById("check");
 function check() {
-    const ansElem = document.getElementById("answers");
-    const ans = ansElem.options[ansElem.selectedIndex].textContent;
-    const ansVal = ansElem.options[ansElem.selectedIndex].value;
-
-    // alert(ans);
+    const ansElem = document.querySelector('input[name="answer"]:checked');
+    const ans = ansElem.parentElement.childNodes[1].textContent;
+    const ansVal = ansElem.value;
 
     if (state.isChecking) {
         checkBtn.classList.remove("is-success");
@@ -136,13 +145,13 @@ function check() {
         } else {
             checkBtn.classList.add("is-danger");
             document
-                .querySelector(`option[value="${ansVal}"]`)
-                .classList.add("has-background-danger");
+                .querySelector(`input[value="${ansVal}"]`)
+                .classList.add("wrong");
             checkBtn.innerHTML = "Sbagliato! &raquo;";
         }
         document
-            .querySelector(`option[value="${state.question}"]`)
-            .classList.add("has-background-success");
+            .querySelector(`input[value="${state.question}"]`)
+            .classList.add("correct");
         state.isChecking = true;
     }
 }

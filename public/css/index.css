@@ -14,4 +14,31 @@ body {
     overflow-y: hidden;
     overflow-x: auto;
     text-align: center;
+    border: 1px solid #1E90FF;
+    border-radius: 2px;
+    color: black;
 }
+
+
+#answers input[type="radio"] {
+    display: none;
+  }
+  
+  #answers span {
+    display: block;
+    padding: 10px;
+    /* text-transform: uppercase; */
+    border-radius: 3px;
+    /* color: #1E90FF; */
+  }
+  
+  #answers input[type="radio"]:checked + span {
+    background-color: #1E90FF;
+    color: white;
+  }
+  #answers input[type="radio"].correct + span {
+    background-color: rgb(54, 223, 54)!important;
+  }
+  #answers input[type="radio"].wrong + span {
+    background-color: rgb(209, 52, 52)!important;
+  }

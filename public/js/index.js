@@ -46,13 +46,24 @@ function getRandomTuple(obj) {
     return Object.entries(obj)[n];
 }
 
+function objectFlip(obj) {
+    const ret = {};
+    Object.keys(obj).forEach(key => {
+        ret[obj[key]] = key;
+    });
+    return ret;
+}
+
 function getSelectedQuestionType() {
     const val = document.querySelector('input[name="type"]:checked').value;
-    return val === "abbr"
-        ? ABBREVIATIONS
-        : val === "q"
-        ? Q_CODES
-        : { ...ABBREVIATIONS, ...Q_CODES };
+    const inverted = document.getElementById("inverted").checked;
+    const obj =
+        val === "abbr"
+            ? ABBREVIATIONS
+            : val === "q"
+            ? Q_CODES
+            : { ...ABBREVIATIONS, ...Q_CODES };
+    return inverted ? objectFlip(obj) : obj;
 }
 
 function setCookie(name, value, days) {
@@ -85,7 +96,10 @@ function ask(obj) {
     delete newAbbr[q2[0]];
     const q3 = getRandomTuple(newAbbr);
 
-    const shuffled = [q, q2, q3].sort(() => 0.5 - Math.random());
+    delete newAbbr[q3[0]];
+    const q4 = getRandomTuple(newAbbr);
+
+    const shuffled = [q, q2, q3, q4].sort(() => 0.5 - Math.random());
 
     document.getElementById("question").textContent = q[0];
     const answersElem = document.getElementById("answers");

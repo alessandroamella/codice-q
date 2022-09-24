@@ -187,9 +187,9 @@ function check() {
         while (state.question === currentQuestion) {
             ask(getSelectedQuestionType());
         }
-        checkBtn.classList.add("is-info");
+        checkBtn.classList.add("is-link");
     } else {
-        checkBtn.classList.remove("is-info");
+        checkBtn.classList.remove("is-link");
         if (ans.toLowerCase() === state.answer.toLowerCase()) {
             checkBtn.classList.add("is-success");
             checkBtn.innerHTML = "Corretto! &raquo;";

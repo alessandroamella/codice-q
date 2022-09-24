@@ -75,7 +75,7 @@
     <meta name="title" content="Impara codice Q e abbreviazioni" />
     <meta
       name="description"
-      content="Semplice quiz web per imparare il codice Q e le abbreviazioni per il conseguimento della patente da radioamatore."
+      content="Semplice quiz web per imparare le abbreviazioni, il codice Q e i prefissi per il conseguimento della patente da radioamatore."
     />
 
     <!-- Open Graph / Facebook -->
@@ -84,7 +84,7 @@
     <meta property="og:title" content="Impara codice Q e abbreviazioni" />
     <meta
       property="og:description"
-      content="Semplice quiz web per imparare il codice Q e le abbreviazioni per il conseguimento della patente da radioamatore."
+      content="Semplice quiz web per imparare le abbreviazioni, il codice Q e i prefissi per il conseguimento della patente da radioamatore."
     />
     <meta property="og:image" content="https://i.imgur.com/8S4Igtd.png" />
 
@@ -94,92 +94,100 @@
     <meta property="twitter:title" content="Impara codice Q e abbreviazioni" />
     <meta
       property="twitter:description"
-      content="Semplice quiz web per imparare il codice Q e le abbreviazioni per il conseguimento della patente da radioamatore."
+      content="Semplice quiz web per imparare le abbreviazioni, il codice Q e i prefissi per il conseguimento della patente da radioamatore."
     />
     <meta property="twitter:image" content="https://i.imgur.com/8S4Igtd.png" />
   </head>
   <body>
-    <div class="container pt-4" style="width: 100%">
+    <section class="hero is-link has-text-centered">
+      <div class="hero-body">
+        <p class="title">Codice Q e abbreviazioni</p>
+        <p class="subtitle has-text-weight-light">
+          Semplice quiz web per imparare le abbreviazioni, il codice Q e i
+          prefissi per il conseguimento della patente da radioamatore.
+        </p>
+      </div>
+    </section>
+
+    <section
+      style="width: 100%"
+      class="container pt-4 is-flex is-justify-content-center is-flex-direction-column"
+    >
       <form id="main-form">
-        <div class="is-flex is-justify-content-center is-flex-direction-column">
-          <h1 class="has-text-centered has-text-weight-bold is-size-1 mb-1">
-            Codice Q e abbreviazioni
-          </h1>
+        <h2
+          id="question"
+          class="bold has-text-centered has-text-weight-bold is-size-3 mt-5"
+        >
+          Caricamento...
+        </h2>
 
-          <section>
-            <h2 class="has-text-centered has-text-weight-light is-size-4 mt-2">
-              Opzioni
-            </h2>
-            <div class="control has-text-centered mt-1">
-              <label class="radio">
-                <input type="radio" name="type" value="abbr" />
-                Abbreviazioni
-              </label>
-              <label class="radio">
-                <input type="radio" name="type" value="q" />
-                Codice Q
-              </label>
-              <label class="radio">
-                <input type="radio" name="type" value="prefixes" />
-                Prefissi
-              </label>
-
-              <div class="control has-text-centered mb-3 mt-2">
-                <label class="checkbox ml-3">
-                  <input type="checkbox" id="inverted" />
-                  Inverti codice - significato
+        <div class="columns is-mobile m-auto" style="width: 100%">
+          <div
+            class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop is-two-thirds-widescreen is-two-thirds-fullhd m-auto"
+          >
+            <div class="select is-multiple">
+              <div id="answers" class="w-12 m-auto">
+                <label>
+                  <input type="checkbox" name="answer" value="dummy1" />
+                  <span>Caricamento...</span>
                 </label>
-                <label class="checkbox ml-3">
-                  <input type="checkbox" id="hard" disabled />
-                  Risposte aperte
+                <label>
+                  <input type="checkbox" name="answer" value="dummy2" />
+                  <span>Caricamento...</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="answer" value="dummy3" />
+                  <span>Caricamento...</span>
                 </label>
               </div>
             </div>
-          </section>
-
-          <hr class="solid" />
-
-          <section>
-            <h2
-              id="question"
-              class="bold has-text-centered has-text-weight-bold is-size-3"
-            >
-              Caricamento...
-            </h2>
-
-            <div class="columns is-mobile m-auto" style="width: 100%">
-              <div
-                class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop is-two-thirds-widescreen is-two-thirds-fullhd m-auto"
-              >
-                <div class="select is-multiple">
-                  <div id="answers" class="w-12 m-auto">
-                    <label>
-                      <input type="checkbox" name="answer" value="dummy1" />
-                      <span>Caricamento...</span>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="answer" value="dummy2" />
-                      <span>Caricamento...</span>
-                    </label>
-                    <label>
-                      <input type="checkbox" name="answer" value="dummy3" />
-                      <span>Caricamento...</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
-        <div class="is-flex is-justify-content-center mt-2 mb-5">
-          <button class="button is-info" id="check" type="submit">
+        <div class="is-flex is-justify-content-center mt-2 mb-4">
+          <button class="button is-link" id="check" type="submit">
             Controlla
           </button>
         </div>
       </form>
-    </div>
+    </section>
 
-    <footer class="footer">
+    <hr class="solid" />
+
+    <section
+      style="width: 100%"
+      class="container pb-6 is-flex is-justify-content-center is-flex-direction-column"
+    >
+      <h2 class="has-text-centered has-text-weight-light is-size-4 mt-2">
+        Opzioni
+      </h2>
+      <div class="control has-text-centered mt-1">
+        <label class="radio">
+          <input type="radio" name="type" value="abbr" />
+          Abbreviazioni
+        </label>
+        <label class="radio">
+          <input type="radio" name="type" value="q" />
+          Codice Q
+        </label>
+        <label class="radio">
+          <input type="radio" name="type" value="prefixes" />
+          Prefissi
+        </label>
+
+        <div class="control has-text-centered mb-3 mt-2">
+          <label class="checkbox ml-3">
+            <input type="checkbox" id="inverted" />
+            Inverti codice - significato
+          </label>
+          <label class="checkbox ml-3">
+            <input type="checkbox" id="hard" disabled />
+            Risposte aperte
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" style="flex-grow: 1">
       <div class="content has-text-centered">
         <!-- prettier-ignore -->
         <p>

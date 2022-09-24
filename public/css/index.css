@@ -1,8 +1,8 @@
-/* body {
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-} */
+}
 
 .select, #answers {
     width: 100%;
@@ -12,7 +12,7 @@
     overflow-y: hidden;
     overflow-x: auto;
     text-align: center;
-    border: 1px solid #1E90FF;
+    border: 1px solid #485fc7;
     border-radius: 6px;
     color: black;
 }
@@ -26,18 +26,26 @@
   padding: 10px;
   /* text-transform: uppercase; */
   border-radius: 3px;
-  /* color: #1E90FF; */
+
+  /* color: #485fc7; */
 }
 
 #answers input[type="radio"]:checked + span {
-  background-color: #1E90FF;
+  background-color: #485fc7;
   color: white;
 }
 #answers input[type="radio"].correct + span {
-  background-color: rgb(54, 223, 54)!important;
+  background-color: hsl(141, 71%, 48%)!important;
   color: white;
 }
 #answers input[type="radio"].wrong + span {
-  background-color: rgb(209, 52, 52)!important;
+  background-color: hsl(348, 100%, 61%)!important;
   color: white;
+}
+
+#answers label {
+  cursor: pointer;
+}
+#answers input[type="radio"]:not(:checked) + span:hover {
+  background-color: #f7f7f7!important;
 }

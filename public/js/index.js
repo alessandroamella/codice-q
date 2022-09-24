@@ -56,7 +56,8 @@ const state = {
     question: null,
     answer: null,
     isChecking: false,
-    isHard: false
+    isHard: false,
+    last10Questions: []
 };
 
 /** @returns {[index: number, string, string]} */
@@ -186,10 +187,21 @@ function check() {
             document.querySelector('input[name="type"]:checked').value
         );
 
-        const currentQuestion = state.question;
-        while (state.question === currentQuestion) {
+        state.last10Questions.push(state.question);
+        if (state.last10Questions.length > 10) {
+            state.last10Questions.shift();
+        }
+
+        while (state.last10Questions.includes(state.question.toString())) {
+            console.log(
+                "skippo",
+                state.question.toString(),
+                "!! contenuto in",
+                state.last10Questions
+            );
             ask(getSelectedQuestionType());
         }
+
         checkBtn.classList.add("is-link");
     } else {
         checkBtn.classList.remove("is-link");

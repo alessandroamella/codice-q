@@ -22,6 +22,7 @@ const Q_CODES = {
     QRN: "Siete disturbati da rumori atmosferici?",
     QRO: "Debbo aumentare la potenza di emissione?",
     QRP: "Debbo diminuire la potenza di trasmissione?",
+    QRQ: "Debbo trasmettere più velocemente?",
     QRS: "Debbo trasmettere più lentamente?",
     QRT: "Debbo cessare la trasmissione?",
     QRZ: "Da chi sono chiamato?",

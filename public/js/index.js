@@ -125,6 +125,7 @@ function ask(obj) {
         input.type = "text";
         input.placeholder = q2[1] + "...";
         input.required = true;
+        input.autocomplete = "off";
 
         answersElem.appendChild(input);
     } else {

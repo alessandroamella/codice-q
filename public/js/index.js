@@ -34,10 +34,27 @@ const Q_CODES = {
     QTH: "Qual è la vostra posizione in latitudine e longitudine?"
 };
 
+const PREFIXES = {
+    I0: "LAZIO - UMBRIA",
+    IS0: "SARDEGNA",
+    I1: "LIGURIA - PIEMONTE",
+    IX1: "VALLE D’AOSTA",
+    I2: "LOMBARDIA",
+    I3: "VENETO",
+    IN3: "TRENTINO ALTO ADIGE",
+    IV3: "FRIULI VENEZIA GIULIA",
+    I4: "EMILIA ROMAGNA",
+    I5: "TOSCANA",
+    I6: "MARCHE - ABRUZZO",
+    I7: "BASILICATA - PUGLIA",
+    I8: "BASILICATA - MOLISE - CAMPANIA - CALABRIA"
+};
+
 const state = {
     question: null,
     answer: null,
-    isChecking: false
+    isChecking: false,
+    isHard: false
 };
 
 /** @returns {[index: number, string, string]} */
@@ -56,13 +73,9 @@ function objectFlip(obj) {
 
 function getSelectedQuestionType() {
     const val = document.querySelector('input[name="type"]:checked').value;
-    const inverted = document.getElementById("inverted").checked;
+    const inverted = invertedElem.checked;
     const obj =
-        val === "abbr"
-            ? ABBREVIATIONS
-            : val === "q"
-            ? Q_CODES
-            : { ...ABBREVIATIONS, ...Q_CODES };
+        val === "abbr" ? ABBREVIATIONS : val === "q" ? Q_CODES : PREFIXES;
     return inverted ? objectFlip(obj) : obj;
 }
 
@@ -99,40 +112,64 @@ function ask(obj) {
     delete newAbbr[q3[0]];
     const q4 = getRandomTuple(newAbbr);
 
-    const shuffled = [q, q2, q3, q4].sort(() => 0.5 - Math.random());
-
-    document.getElementById("question").textContent = q[0];
     const answersElem = document.getElementById("answers");
     answersElem.innerHTML = "";
 
-    for (const s of shuffled) {
-        const label = document.createElement("label");
-        const input = document.createElement("input");
-        input.type = "radio";
-        input.name = "answer";
-        input.value = s[0];
-        const span = document.createElement("span");
-        span.textContent = s[1];
-        label.appendChild(input);
-        label.appendChild(span);
-        answersElem.appendChild(label);
+    document.getElementById("question").textContent = q[0];
 
-        // const option = document.createElement("option");
-        // option.value = s[0];
-        // option.textContent = s[1];
-        // answersElem.appendChild(option);
+    if (hardElem.checked) {
+        const input = document.createElement("input");
+        input.classList.add("input");
+        input.id = "hard-input";
+        input.type = "text";
+        input.placeholder = q2[1] + "...";
+        input.required = true;
+
+        answersElem.appendChild(input);
+    } else {
+        const shuffled = [q, q2, q3, q4].sort(() => 0.5 - Math.random());
+
+        for (const s of shuffled) {
+            const label = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "answer";
+            input.value = s[0];
+            const span = document.createElement("span");
+            span.textContent = s[1];
+            label.appendChild(input);
+            label.appendChild(span);
+            answersElem.appendChild(label);
+
+            // const option = document.createElement("option");
+            // option.value = s[0];
+            // option.textContent = s[1];
+            // answersElem.appendChild(option);
+        }
+
+        answersElem.childNodes[0].childNodes[0].setAttribute("checked", true);
     }
 
-    answersElem.childNodes[0].childNodes[0].setAttribute("checked", true);
+    state.isHard = hardElem.checked;
+    setCookie("inverted", invertedElem.checked);
+    setCookie("hard", hardElem.checked);
 
     state.question = q[0];
     state.answer = q[1];
+
+    if (hardElem.checked) {
+        document.getElementById("hard-input").focus();
+    }
 }
 
 const checkBtn = document.getElementById("check");
 function check() {
-    const ansElem = document.querySelector('input[name="answer"]:checked');
-    const ans = ansElem.parentElement.childNodes[1].textContent;
+    const ansElem = state.isHard
+        ? document.getElementById("hard-input")
+        : document.querySelector('input[name="answer"]:checked');
+    const ans = state.isHard
+        ? ansElem.value
+        : ansElem.parentElement.childNodes[1].textContent;
     const ansVal = ansElem.value;
 
     if (state.isChecking) {
@@ -153,26 +190,70 @@ function check() {
         checkBtn.classList.add("is-info");
     } else {
         checkBtn.classList.remove("is-info");
-        if (ans === state.answer) {
+        if (ans.toLowerCase() === state.answer.toLowerCase()) {
             checkBtn.classList.add("is-success");
             checkBtn.innerHTML = "Corretto! &raquo;";
+
+            if (state.isHard) {
+                document.getElementById("hard-input").style.backgroundColor =
+                    "#ccffcc";
+            }
         } else {
             checkBtn.classList.add("is-danger");
-            document
-                .querySelector(`input[value="${ansVal}"]`)
-                .classList.add("wrong");
+            if (!state.isHard) {
+                document
+                    .querySelector(`input[value="${ansVal}"]`)
+                    .classList.add("wrong");
+            } else {
+                document.getElementById("hard-input").style.backgroundColor =
+                    "#ffcccc";
+            }
             checkBtn.innerHTML = "Sbagliato! &raquo;";
         }
-        document
-            .querySelector(`input[value="${state.question}"]`)
-            .classList.add("correct");
+        if (!state.isHard) {
+            document
+                .querySelector(`input[value="${state.question}"]`)
+                .classList.add("correct");
+        }
         state.isChecking = true;
+    }
+
+    if (state.isHard && state.isChecking) {
+        const span = document.createElement("span");
+        span.textContent = state.answer;
+        span.classList.add("has-text-weight-bold");
+        span.classList.add("is-underlined");
+        span.classList.add("p-1");
+        span.style.backgroundColor = "#ccffcc";
+        span.style.borderRadius = "7px";
+
+        document.getElementById("question").textContent += " ";
+        document.getElementById("question").appendChild(span);
+    }
+
+    if (!state.isChecking) {
+        document.getElementById("answers").style.border = hardElem.checked
+            ? "hidden"
+            : "1px solid #1E90FF";
     }
 }
 
 function start() {
     const type = getCookie("type") || "q";
+    const inverted = getCookie("inverted") === "true";
+    const hard = getCookie("hard") === "true";
+
     document.querySelector(`input[value="${type}"]`).checked = true;
+    invertedElem.checked = inverted;
+    hardElem.checked = hard;
+
+    if (inverted) {
+        hardElem.removeAttribute("disabled");
+    }
+    if (hard) {
+        document.getElementById("answers").style.border = "hidden";
+    }
+
     ask(getSelectedQuestionType());
 }
 
@@ -180,6 +261,17 @@ document.getElementById("main-form").addEventListener("submit", e => {
     e.preventDefault();
     check();
     return false;
+});
+
+const hardElem = document.getElementById("hard");
+const invertedElem = document.getElementById("inverted");
+invertedElem.addEventListener("change", e => {
+    if (e.target.checked) {
+        hardElem.removeAttribute("disabled");
+    } else {
+        hardElem.checked = false;
+        hardElem.setAttribute("disabled", true);
+    }
 });
 
 start();

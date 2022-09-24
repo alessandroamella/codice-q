@@ -102,73 +102,73 @@
     <div class="container pt-3" style="width: 100%">
       <form id="main-form">
         <div class="is-flex is-justify-content-center is-flex-direction-column">
-          <h1
-            class="bold has-text-centered has-text-weight-bold is-size-1 mb-1"
-          >
+          <h1 class="has-text-centered has-text-weight-bold is-size-1 mb-1">
             Codice Q e abbreviazioni
           </h1>
-          <div class="control has-text-centered mb-3">
-            <label class="radio">
-              <input type="radio" name="type" value="abbr" />
-              Abbreviazioni
-            </label>
-            <label class="radio">
-              <input type="radio" name="type" value="q" />
-              Codice Q
-            </label>
-            <label class="radio">
-              <input type="radio" name="type" value="both" />
-              Entrambi
-            </label>
 
-            <label class="checkbox ml-3">
-              <input type="checkbox" id="inverted" />
-              Inverti codice - significato
-            </label>
-          </div>
+          <section>
+            <h2 class="has-text-centered has-text-weight-light is-size-4 mt-2">
+              Opzioni
+            </h2>
+            <div class="control has-text-centered">
+              <label class="radio">
+                <input type="radio" name="type" value="abbr" />
+                Abbreviazioni
+              </label>
+              <label class="radio">
+                <input type="radio" name="type" value="q" />
+                Codice Q
+              </label>
+              <label class="radio">
+                <input type="radio" name="type" value="prefixes" />
+                Prefissi
+              </label>
 
-          <h2
-            id="question"
-            class="bold has-text-centered has-text-weight-bold is-size-3 mb-1"
-          >
-            Caricamento...
-          </h2>
+              <div class="control has-text-centered mb-3">
+                <label class="checkbox ml-3">
+                  <input type="checkbox" id="inverted" />
+                  Inverti codice - significato
+                </label>
+                <label class="checkbox ml-3">
+                  <input type="checkbox" id="hard" disabled />
+                  Risposte aperte
+                </label>
+                `
+              </div>
+            </div>
+          </section>
 
-          <div class="columns is-mobile m-auto" style="width: 100%">
-            <div
-              class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop is-two-thirds-widescreen is-two-thirds-fullhd m-auto"
+          <section>
+            <h2
+              id="question"
+              class="bold has-text-centered has-text-weight-bold is-size-3 pt-2"
             >
-              <div class="select is-multiple">
-                <!-- <select
-                  multiple
-                  size="3"
-                  aria-multiline="true"
-                  aria-multiselectable="false"
-                  required
-                  id="answers"
-                  class="w-12 m-auto"
-                >
-                  <option value="dummy1">Caricamento...</option>
-                  <option value="dummy2">Caricamento...</option>
-                  <option value="dummy3">Caricamento...</option>
-                </select> -->
-                <div id="answers" class="w-12 m-auto">
-                  <label>
-                    <input type="checkbox" name="answer" value="dummy1" />
-                    <span>Caricamento...</span>
-                  </label>
-                  <label>
-                    <input type="checkbox" name="answer" value="dummy2" />
-                    <span>Caricamento...</span>
-                  </label>
-                  <label>
-                    <input type="checkbox" name="answer" value="dummy3" />
-                    <span>Caricamento...</span>
-                  </label>
+              Caricamento...
+            </h2>
+
+            <div class="columns is-mobile m-auto" style="width: 100%">
+              <div
+                class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop is-two-thirds-widescreen is-two-thirds-fullhd m-auto"
+              >
+                <div class="select is-multiple">
+                  <div id="answers" class="w-12 m-auto">
+                    <label>
+                      <input type="checkbox" name="answer" value="dummy1" />
+                      <span>Caricamento...</span>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="answer" value="dummy2" />
+                      <span>Caricamento...</span>
+                    </label>
+                    <label>
+                      <input type="checkbox" name="answer" value="dummy3" />
+                      <span>Caricamento...</span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
         <div class="is-flex is-justify-content-center mt-2 mb-5">
           <button class="button is-info" id="check" type="submit">

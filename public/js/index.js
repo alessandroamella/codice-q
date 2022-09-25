@@ -52,12 +52,49 @@ const PREFIXES = {
     IT9: "SICILIA"
 };
 
+const FREQUENCIES = {
+    VLF: "3 kHz - 30 kHz",
+    LF: "30 kHz - 300 kHz",
+    MF: "300 kHz - 3000 kHz",
+    HF: "3 MHz - 30 MHz",
+    VHF: "30 MHz - 300 MHz",
+    UHF: "300 MHz - 3000 MHz",
+    SHF: "3 GHz - 30 GHz",
+    EHF: "30 GHz - 300 GHz",
+    microonde: "300 GHz - 3000 GHz"
+};
+
+const FREQUENCIES_LAMBDA = {
+    VLF: "100 km - 10 km",
+    LF: "10 km - 1 km",
+    MF: "1000 m - 100 m",
+    HF: "100 m - 10 m",
+    VHF: "10 m - 1 m",
+    UHF: "100 cm - 10 cm",
+    SHF: "10 cm - 1 cm",
+    EHF: "10 mm - 1 mm",
+    microonde: "1 mm - 0,1mm"
+};
+
+const FREQUENCIES_NAME = {
+    VLF: "miriametriche",
+    LF: "chilometriche",
+    MF: "ettometriche",
+    HF: "decametriche",
+    VHF: "metriche",
+    UHF: "decimetriche",
+    SHF: "centimetriche",
+    EHF: "millimetriche",
+    microonde: "decimillimetriche"
+};
+
 const state = {
     question: null,
     answer: null,
     isChecking: false,
     isHard: false,
-    last10Questions: []
+    last8Questions: [],
+    type: "q"
 };
 
 /** @returns {[index: number, string, string]} */
@@ -75,10 +112,20 @@ function objectFlip(obj) {
 }
 
 function getSelectedQuestionType() {
-    const val = document.querySelector('input[name="type"]:checked').value;
+    const val = state.type;
     const inverted = invertedElem.checked;
     const obj =
-        val === "abbr" ? ABBREVIATIONS : val === "q" ? Q_CODES : PREFIXES;
+        val === "abbr"
+            ? ABBREVIATIONS
+            : val === "q"
+            ? Q_CODES
+            : val === "prefixes"
+            ? PREFIXES
+            : val === "f"
+            ? FREQUENCIES
+            : val === "lambda"
+            ? FREQUENCIES_LAMBDA
+            : FREQUENCIES_NAME;
     return inverted ? objectFlip(obj) : obj;
 }
 
@@ -109,11 +156,6 @@ function ask(obj) {
     delete newAbbr[q[0]];
 
     const q2 = getRandomTuple(newAbbr);
-    delete newAbbr[q2[0]];
-    const q3 = getRandomTuple(newAbbr);
-
-    delete newAbbr[q3[0]];
-    const q4 = getRandomTuple(newAbbr);
 
     const answersElem = document.getElementById("answers");
     answersElem.innerHTML = "";
@@ -131,6 +173,12 @@ function ask(obj) {
 
         answersElem.appendChild(input);
     } else {
+        delete newAbbr[q2[0]];
+        const q3 = getRandomTuple(newAbbr);
+
+        delete newAbbr[q3[0]];
+        const q4 = getRandomTuple(newAbbr);
+
         const shuffled = [q, q2, q3, q4].sort(() => 0.5 - Math.random());
 
         for (const s of shuffled) {
@@ -182,23 +230,12 @@ function check() {
         state.isChecking = false;
         checkBtn.textContent = "Controlla";
 
-        setCookie(
-            "type",
-            document.querySelector('input[name="type"]:checked').value
-        );
-
-        state.last10Questions.push(state.question);
-        if (state.last10Questions.length > 10) {
-            state.last10Questions.shift();
+        state.last8Questions.push(state.question);
+        if (state.last8Questions.length > 8) {
+            state.last8Questions.shift();
         }
 
-        while (state.last10Questions.includes(state.question.toString())) {
-            console.log(
-                "skippo",
-                state.question.toString(),
-                "!! contenuto in",
-                state.last10Questions
-            );
+        while (state.last8Questions.includes(state.question.toString())) {
             ask(getSelectedQuestionType());
         }
 
@@ -258,7 +295,12 @@ function start() {
     const inverted = getCookie("inverted") === "true";
     const hard = getCookie("hard") === "true";
 
-    document.querySelector(`input[value="${type}"]`).checked = true;
+    state.type = type;
+
+    document.getElementById(type).classList.add("is-active");
+    document.getElementById("type-selected").textContent =
+        document.getElementById(type).textContent;
+
     invertedElem.checked = inverted;
     hardElem.checked = hard;
 
@@ -290,3 +332,23 @@ invertedElem.addEventListener("change", e => {
 });
 
 start();
+
+document.querySelectorAll(".dropdown-item").forEach(e => {
+    // prevent link scroll to top
+    e.addEventListener("click", e => {
+        e.preventDefault();
+
+        // remove all is-active
+        document
+            .querySelectorAll(".dropdown-item")
+            .forEach(e => e.classList.remove("is-active"));
+
+        e.target.classList.add("is-active");
+
+        document.getElementById("type-selected").textContent =
+            e.target.textContent;
+
+        state.type = e.target.id;
+        setCookie("type", state.type);
+    });
+});

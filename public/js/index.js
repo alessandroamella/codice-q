@@ -298,6 +298,7 @@ function check() {
         span.classList.add("has-text-weight-bold");
         span.classList.add("is-underlined");
         span.classList.add("p-1");
+        span.classList.add("ml-1");
         span.style.backgroundColor = "#ccffcc";
         span.style.borderRadius = "7px";
 

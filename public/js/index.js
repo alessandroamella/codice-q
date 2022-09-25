@@ -88,6 +88,17 @@ const FREQUENCIES_NAME = {
     microonde: "decimillimetriche"
 };
 
+const BAND_NAMES = {
+    VLF: "Very Low Frequency",
+    LF: "Low Frequency",
+    MF: "Medium Frequency",
+    HF: "High Frequency",
+    VHF: "Very High Frequency",
+    UHF: "Ultra High Frequency",
+    SHF: "Super High Frequency",
+    EHF: "Extra High Frequency"
+};
+
 const state = {
     question: null,
     answer: null,
@@ -160,7 +171,18 @@ function ask(obj) {
     const answersElem = document.getElementById("answers");
     answersElem.innerHTML = "";
 
-    document.getElementById("question").textContent = q[0];
+    const questionElem = document.getElementById("question");
+    questionElem.innerHTML = "";
+    questionElem.textContent = q[0];
+
+    if (Object.keys(BAND_NAMES).includes(q[0])) {
+        const span = document.createElement("span");
+        span.textContent = `(${BAND_NAMES[q[0]]})`;
+        span.classList.add("has-text-weight-light");
+        span.classList.add("is-size-5");
+        span.classList.add("pl-2");
+        questionElem.appendChild(span);
+    }
 
     if (hardElem.checked) {
         const input = document.createElement("input");

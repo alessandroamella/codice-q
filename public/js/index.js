@@ -99,6 +99,25 @@ const BAND_NAMES = {
     EHF: "Extra High Frequency"
 };
 
+const MODULATION_TYPE = {
+    A: "AM: doppia banda laterale (DSB)",
+    H: "AM: singola banda laterale con portante (SSB)",
+    C: "AM: banda laterale vestigiale",
+    F: "Mod. angolare: modulazione di frequenza"
+};
+
+const MODULATION_NATURE = {
+    1: "Un solo canale contenente l’informazione digitale (senza portante)",
+    3: "Un solo canale contenente l’informazione analogica",
+    8: "Due o più canali contenenti l’informazione analogica"
+};
+
+const INFORMATION_TYPE = {
+    A: "Telegrafia per ricezione auditiva",
+    E: "Telefonia (ivi compresa la radiodiffusione sonora)",
+    F: "Televisione (video)"
+};
+
 const state = {
     question: null,
     answer: null,
@@ -136,7 +155,13 @@ function getSelectedQuestionType() {
             ? FREQUENCIES
             : val === "lambda"
             ? FREQUENCIES_LAMBDA
-            : FREQUENCIES_NAME;
+            : val === "f-names"
+            ? FREQUENCIES_NAME
+            : val === "mod-types"
+            ? MODULATION_TYPE
+            : val === "mod-natures"
+            ? MODULATION_NATURE
+            : INFORMATION_TYPE;
     return inverted ? objectFlip(obj) : obj;
 }
 
@@ -201,7 +226,9 @@ function ask(obj) {
         delete newAbbr[q3[0]];
         const q4 = getRandomTuple(newAbbr);
 
-        const shuffled = [q, q2, q3, q4].sort(() => 0.5 - Math.random());
+        const shuffled = [q, q2, q3, q4]
+            .filter(e => !!e)
+            .sort(() => 0.5 - Math.random());
 
         for (const s of shuffled) {
             const label = document.createElement("label");
@@ -253,7 +280,7 @@ function check() {
         checkBtn.textContent = "Controlla";
 
         state.last8Questions.push(state.question);
-        if (state.last8Questions.length > 8) {
+        if (state.last8Questions.length > 2) {
             state.last8Questions.shift();
         }
 

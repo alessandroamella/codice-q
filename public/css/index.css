@@ -155,9 +155,13 @@ body {
       color: #90caf9;
   }
 
-  /* Fix for question text color */
+  /* Fix for question text color, but not inner span */
   #question {
       color: #e0e0e0;
+  }
+
+  #question span {
+      color: #121212;
   }
 
   /* Fix for checkbox text color */
@@ -177,6 +181,11 @@ body {
 
   #quiz-info-footer {
     color: #fff;
+  }
+
+  input#hard-input:not(.answered) {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
   }
 }
 

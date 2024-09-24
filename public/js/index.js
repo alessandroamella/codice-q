@@ -276,6 +276,7 @@ function check() {
     if (state.isChecking) {
         checkBtn.classList.remove("is-success");
         checkBtn.classList.remove("is-danger");
+        document.getElementById("hard-input").classList.remove("answered");
         state.isChecking = false;
         checkBtn.textContent = "Controlla";
 
@@ -290,6 +291,7 @@ function check() {
 
         checkBtn.classList.add("is-link");
     } else {
+        document.getElementById("hard-input").classList.add("answered");
         checkBtn.classList.remove("is-link");
         if (ans.toLowerCase() === state.answer.toLowerCase()) {
             checkBtn.classList.add("is-success");

@@ -1,5 +1,5 @@
 import express from "express";
-import { join } from "path";
+import { join } from "node:path";
 
 import "dotenv/config";
 
@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.sendFile(join(__dirname, "../index.html"));
+    res.sendFile(join(process.cwd(), "index.html"));
 });
 
 const PORT = Number(process.env.PORT) || 3000;

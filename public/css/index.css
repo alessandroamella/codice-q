@@ -160,7 +160,7 @@ body {
       color: #e0e0e0;
   }
 
-  #question span {
+  #question span:not(.question-subtitle) {
       color: #121212;
   }
 
@@ -211,4 +211,8 @@ body {
   * {
       transition: none !important;
   }
+}
+
+div.control span.tag {
+  text-align: center;
 }

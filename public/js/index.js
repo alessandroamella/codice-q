@@ -206,6 +206,7 @@ function ask(obj) {
         span.classList.add("has-text-weight-light");
         span.classList.add("is-size-5");
         span.classList.add("pl-2");
+        span.classList.add("question-subtitle");
         questionElem.appendChild(span);
     }
 
@@ -276,7 +277,7 @@ function check() {
     if (state.isChecking) {
         checkBtn.classList.remove("is-success");
         checkBtn.classList.remove("is-danger");
-        document.getElementById("hard-input").classList.remove("answered");
+        document.getElementById("hard-input")?.classList.remove("answered");
         state.isChecking = false;
         checkBtn.textContent = "Controlla";
 
@@ -291,7 +292,7 @@ function check() {
 
         checkBtn.classList.add("is-link");
     } else {
-        document.getElementById("hard-input").classList.add("answered");
+        document.getElementById("hard-input")?.classList.add("answered");
         checkBtn.classList.remove("is-link");
         if (ans.toLowerCase() === state.answer.toLowerCase()) {
             checkBtn.classList.add("is-success");

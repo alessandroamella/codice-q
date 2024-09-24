@@ -341,15 +341,19 @@ function check() {
 }
 
 function start() {
-    const type = getCookie("type") || "q";
+    const type = getCookie("type") || "abbr";
     const inverted = getCookie("inverted") === "true";
     const hard = getCookie("hard") === "true";
 
     state.type = type;
 
-    document.getElementById(type).classList.add("is-active");
-    document.getElementById("type-selected").textContent =
-        document.getElementById(type).textContent;
+    // Update this line to select the correct tag
+    const activeTag = document.querySelector(
+        `#quiz-tabs .tag[data-target="${type}"]`
+    );
+    if (activeTag) {
+        activeTag.classList.add("is-light");
+    }
 
     invertedElem.checked = inverted;
     hardElem.checked = hard;
@@ -363,6 +367,20 @@ function start() {
 
     ask(getSelectedQuestionType());
 }
+
+// Update the event listener for quiz tabs
+document.addEventListener("DOMContentLoaded", () => {
+    const tags = document.querySelectorAll("#quiz-tabs .tag");
+    tags.forEach(tag => {
+        tag.addEventListener("click", () => {
+            tags.forEach(t => t.classList.remove("is-light"));
+            tag.classList.add("is-light");
+            state.type = tag.dataset.target;
+            setCookie("type", state.type);
+            ask(getSelectedQuestionType());
+        });
+    });
+});
 
 document.getElementById("main-form").addEventListener("submit", e => {
     e.preventDefault();
@@ -382,23 +400,3 @@ invertedElem.addEventListener("change", e => {
 });
 
 start();
-
-document.querySelectorAll(".dropdown-item").forEach(e => {
-    // prevent link scroll to top
-    e.addEventListener("click", e => {
-        e.preventDefault();
-
-        // remove all is-active
-        document
-            .querySelectorAll(".dropdown-item")
-            .forEach(e => e.classList.remove("is-active"));
-
-        e.target.classList.add("is-active");
-
-        document.getElementById("type-selected").textContent =
-            e.target.textContent;
-
-        state.type = e.target.id;
-        setCookie("type", state.type);
-    });
-});

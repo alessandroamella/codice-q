@@ -1,257 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-FT44XRDK45"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-FT44XRDK45");
-    </script>
-
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Radio</title>
-
+    <title>Quiz per Radioamatori</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
     <link rel="stylesheet" href="/css/index.css" />
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
-    <link
-      rel="apple-touch-icon"
-      sizes="114x114"
-      href="/apple-icon-114x114.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="120x120"
-      href="/apple-icon-120x120.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="144x144"
-      href="/apple-icon-144x144.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="/apple-icon-152x152.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-icon-180x180.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="/android-icon-192x192.png"
-    />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
-
-    <!-- Primary Meta Tags -->
-    <title>Impara Codice Q, abbreviazioni e bande radio</title>
-    <meta name="title" content="Impara Codice Q, abbreviazioni e bande radio" />
-    <meta
-      name="description"
-      content="Un quiz web per imparare le abbreviazioni, il codice Q, i prefissi italiani e le gamme delle frequenze per il conseguimento della patente da radioamatore."
-    />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://i.imgur.com/8S4Igtd.png" />
-    <meta
-      property="og:title"
-      content="Impara Codice Q, abbreviazioni e bande radio"
-    />
-    <meta
-      property="og:description"
-      content="Un quiz web per imparare le abbreviazioni, il codice Q, i prefissi italiani e le gamme delle frequenze per il conseguimento della patente da radioamatore."
-    />
-    <meta property="og:image" content="https://i.imgur.com/8S4Igtd.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://i.imgur.com/8S4Igtd.png" />
-    <meta
-      property="twitter:title"
-      content="Impara Codice Q, abbreviazioni e bande radio"
-    />
-    <meta
-      property="twitter:description"
-      content="Un quiz web per imparare le abbreviazioni, il codice Q, i prefissi italiani e le gamme delle frequenze per il conseguimento della patente da radioamatore."
-    />
-    <meta property="twitter:image" content="https://i.imgur.com/8S4Igtd.png" />
   </head>
   <body>
-    <section class="hero is-link has-text-centered">
-      <!-- prettier-ignore -->
+    <header class="hero is-link">
       <div class="hero-body">
-        <p class="title mb-0">Codice Q, abbreviazioni e bande radio</p>
-        <p class="subtitle has-text-weight-light mt-2 is-hidden-mobile">
-          Un quiz web per imparare le
-          <strong>abbreviazioni</strong>, il
-          <strong>codice Q</strong>, i
-          <strong>prefissi italiani</strong>
-          e le
-          <strong>gamme delle frequenze</strong>
-          per il conseguimento della patente da radioamatore.
-        </p>
+        <div class="container">
+          <h1 class="title has-text-centered">Quiz per Radioamatori</h1>
+          <h2 class="subtitle has-text-centered has-text-weight-light">
+            Un quiz web per imparare le
+            <strong>abbreviazioni</strong>
+            , il
+            <strong>codice Q</strong>
+            , i
+            <strong>prefissi italiani</strong>
+            , le
+            <strong>gamme delle frequenze</strong>
+            , e altri concetti importanti per il conseguimento della patente da
+            radioamatore.
+          </h2>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <section
-      style="width: 100%"
-      class="container pt-4 is-flex is-justify-content-center is-flex-direction-column"
-    >
-      <form id="main-form" autocomplete="off">
-        <h2
-          id="question"
-          class="is-flex is-align-items-center is-justify-content-center has-text-centered has-text-weight-bold is-size-3 mt-5"
-        >
-          Caricamento...
-        </h2>
-
-        <div class="columns is-mobile m-auto" style="width: 100%">
-          <div
-            class="column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop is-two-thirds-widescreen is-two-thirds-fullhd m-auto"
-          >
-            <div class="select is-multiple">
-              <div id="answers" class="w-12 m-auto">
-                <label>
-                  <input type="checkbox" name="answer" value="dummy1" />
-                  <span>Caricamento...</span>
-                </label>
-                <label>
-                  <input type="checkbox" name="answer" value="dummy2" />
-                  <span>Caricamento...</span>
-                </label>
-                <label>
-                  <input type="checkbox" name="answer" value="dummy3" />
-                  <span>Caricamento...</span>
-                </label>
-                <label>
-                  <input type="checkbox" name="answer" value="dummy3" />
-                  <span>Caricamento...</span>
-                </label>
+    <main class="section">
+      <div class="container">
+        <nav class="panel is-link" aria-label="Quiz categories">
+          <p class="panel-heading">Categorie Quiz</p>
+          <div class="panel-block">
+            <div class="field is-grouped is-grouped-multiline" id="quiz-tabs">
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="abbr">
+                  Abbreviazioni
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="q">
+                  Codice Q
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="prefixes">
+                  Prefissi
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="f">
+                  Gamma di frequenza
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="lambda">
+                  Gamma di λ
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="f-names">
+                  Nomi bande
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="mod-types">
+                  Tipi di modulazione
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="mod-natures">
+                  Natura della modulazione
+                </span>
+              </div>
+              <div class="control">
+                <span class="tag is-link is-medium" data-target="info-type">
+                  Tipi di informazione
+                </span>
               </div>
             </div>
           </div>
-        </div>
-        <div class="is-flex is-justify-content-center mt-2 mb-4">
-          <button class="button is-link" id="check" type="submit">
-            Controlla
-          </button>
-        </div>
-      </form>
-    </section>
+        </nav>
 
-    <hr class="solid" />
+        <div class="box mt-5">
+          <form id="main-form" autocomplete="off">
+            <h2 id="question" class="title is-3 has-text-centered mb-5">
+              Caricamento...
+            </h2>
 
-    <section
-      style="width: 100%"
-      class="container pb-6 is-flex is-justify-content-center is-flex-direction-column"
-    >
-      <h2 class="has-text-centered has-text-weight-light is-size-4 mt-2">
-        Opzioni
-      </h2>
-      <div class="control has-text-centered mt-2">
-        <div class="dropdown is-hoverable is-up">
-          <div class="dropdown-trigger">
-            <button
-              class="button"
-              aria-haspopup="true"
-              aria-controls="dropdown-menu4"
-            >
-              <span id="type-selected" data-type="q">Codice Q</span>
-              <span class="icon is-small">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  class="mt-1"
+            <div class="columns is-centered">
+              <div class="column is-two-thirds">
+                <div
+                  id="answers"
+                  class="my-4"
+                  role="radiogroup"
+                  aria-labelledby="question"
                 >
-                  <path
-                    fill="#363636"
-                    d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-          <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-            <div class="dropdown-content">
-              <a href="#" class="dropdown-item" id="abbr">Abbreviazioni</a>
-              <a href="#" class="dropdown-item" id="q">Codice Q</a>
-              <a href="#" class="dropdown-item" id="prefixes">Prefissi</a>
-              <a href="#" class="dropdown-item" id="f">Gamma di frequenza</a>
-              <a href="#" class="dropdown-item" id="lambda">Gamma di λ</a>
-              <a href="#" class="dropdown-item" id="f-names">Nomi bande</a>
-              <a href="#" class="dropdown-item" id="mod-types">
-                Tipi di modulazione
-              </a>
-              <a href="#" class="dropdown-item" id="mod-natures">
-                Natura della modulazione
-              </a>
-              <a href="#" class="dropdown-item" id="info-type">
-                Tipi di informazione
-              </a>
+                  <!-- Answers will be populated here -->
+                </div>
+              </div>
             </div>
-          </div>
+
+            <div class="field is-grouped is-grouped-centered mt-5">
+              <div class="control">
+                <button class="button is-link" id="check" type="submit">
+                  Controlla
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
 
-        <div class="control has-text-centered my-3">
-          <label class="checkbox ml-3">
+        <div class="field is-grouped is-grouped-centered mt-5">
+          <div class="control">
             <input type="checkbox" id="inverted" />
-            Inverti codice - significato
-          </label>
-          <label class="checkbox ml-3">
+            <label class="checkbox" for="inverted">
+              Inverti codice - significato
+            </label>
+          </div>
+          <div class="control">
             <input type="checkbox" id="hard" disabled />
-            Risposte aperte
-          </label>
+            <label class="checkbox" for="hard">Risposte aperte</label>
+          </div>
         </div>
       </div>
-    </section>
+    </main>
 
-    <footer class="footer" style="flex-grow: 1">
+    <footer class="footer mt-auto">
       <div class="content has-text-centered">
-        <!-- prettier-ignore -->
         <p>
-          <strong>Codice Q, abbreviazioni e bande radio</strong>
+          <strong>Quiz per Radioamatori</strong>
           di
           <a
-              href="https://www.bitrey.it"
-              target="_blank"
-              rel="noopener noreferrer"
-          >Alessandro Amella <strong>IU4QSG</strong></a>. Il codice è pubblico su
+            href="https://www.bitrey.it"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Alessandro Amella
+            <strong>IU4QSG</strong>
+          </a>
+          . Il codice è pubblico su
           <a
-              href="https://github.com/Bitrey/codice-q"
-              target="_blank"
-              rel="noopener noreferrer"
-          >GitHub</a>. Esame passato il 19 ottobre 2022 🎉🎉
-      </p>
+            href="https://github.com/Bitrey/codice-q"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          . Esame passato il 19 ottobre 2022 🎉🎉
+        </p>
       </div>
     </footer>
 
